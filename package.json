@@ -2,14 +2,13 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "build:live": "nodemon --watch '**/*.ts' --exec 'ts-node' index.ts",
-    "dev": "ts-node index.ts",
-    "lint": "rome check **/*.ts",
-    "format": "rome format **/*.ts --write",
+    "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
+    "lint": "rome check src",
+    "format": "rome format src --write",
     "prestart": "npm run build",
     "start": "node dist/index.js",
     "prepare": "husky install"
