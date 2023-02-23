@@ -1,7 +1,12 @@
 import { MessageEvent, Message } from "@line/bot-sdk";
+import { handleTextMessage } from "./messageHandler/textMessageHandler";
 
 export const handleMessageEvent = async (messageEvent: MessageEvent): Promise<Message[]> => {
-  if (textEventMessage.message.text === "一問一答") {
-    messages = singleQuestion();
+  const message = messageEvent.message;
+  switch (message.type) {
+    case 'text':
+      return await handleTextMessage(message);
+    default:
+      throw new Error(`ハンドリングされないメッセージタイプです: ${JSON.stringify(message)}`);
   }
 };
