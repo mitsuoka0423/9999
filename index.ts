@@ -1,5 +1,5 @@
-import { config } from "dotenv";
 import bodyParser from "body-parser";
+import { config } from "dotenv";
 import express from "express";
 import morgan from "morgan";
 import { middleware, MiddlewareConfig } from "@line/bot-sdk";
@@ -31,7 +31,7 @@ app.get("/", (_, res) => {
 });
 
 app.post("/webhook", middleware(middlewareConfig), bodyParser.json(), (req, _, next) => {
-  console.log(JSON.stringify(req.body, null, 2));
+  console.debug(JSON.stringify(req.body, null, 2));
   next();
 }, (req, res) => {
   adapter(req).then((result) => res.json(result));
