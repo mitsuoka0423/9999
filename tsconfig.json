@@ -1,21 +1,25 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "lib": ["ESNext"],
     "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "baseUrl": "src",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "lib": ["ESNext"],
     "module": "commonjs",
     "moduleResolution": "Node",
+    "noEmit": true,   
+    "outDir": "./dist",
     "resolveJsonModule": true,
-    "outDir": "dist",
-    "isolatedModules": true,
-    "noEmit": true,
-    "typeRoots": ["./node_modules/@types"]
+    "rootDir": "./src",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "typeRoots": ["./node_modules/@types"],
+    "useDefineForClassFields": true
   },
-  "include": ["**/*.ts"],
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
 }

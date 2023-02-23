@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "dev": "nodemon --watch src --exec 'ts-node' src/index.ts",
+    "dev": "ts-node src/index.ts",
+    "dev:live": "nodemon --watch src --exec 'ts-node' src/index.ts",
     "lint": "rome check src",
     "format": "rome format src --write",
     "prestart": "npm run build",
