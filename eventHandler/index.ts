@@ -1,26 +1,28 @@
-import { Client, WebhookEvent, Message } from '@line/bot-sdk';
-import { channelAccessToken, channelSecret } from '../library/line/env';
-import { handleMessageEvent } from './messageEventHandler';
+import { Client, WebhookEvent, Message } from "@line/bot-sdk";
+import { channelAccessToken, channelSecret } from "../library/line/env";
+import { handleMessageEvent } from "./messageEventHandler";
 
 const client = new Client({ channelAccessToken, channelSecret });
 
 export const handle = async (event: WebhookEvent) => {
-  console.info('[START]eventHandler/handle');
-  console.debug(`event: ${JSON.stringify(event, null, 2)}`);
+	console.info("[START]eventHandler/handle");
+	console.debug(`event: ${JSON.stringify(event, null, 2)}`);
 
-  let messages: Message[];
+	let messages: Message[];
 
-  switch (event.type) {
-    case 'message':
-      messages = await handleMessageEvent(event);
-      break;
-    default:
-      throw new Error(`ハンドリングされないイベントタイプです: ${JSON.stringify(event)}`);
-  }
+	switch (event.type) {
+		case "message":
+			messages = await handleMessageEvent(event);
+			break;
+		default:
+			throw new Error(
+				`ハンドリングされないイベントタイプです: ${JSON.stringify(event)}`,
+			);
+	}
 
-  if (messages.length >= 1) {
-    await client.replyMessage(event.replyToken, messages);
-  }
+	if (messages.length >= 1) {
+		await client.replyMessage(event.replyToken, messages);
+	}
 
-  console.info('[END  ]eventHandler/handle');
+	console.info("[END  ]eventHandler/handle");
 };
