@@ -1,37 +1,30 @@
-import { Message, TextMessage } from "@line/bot-sdk";
+import { Action, Message, TextMessage } from "@line/bot-sdk";
+
+import { QuestionAndOptionsRandomGenerator } from '../domain/QuestionAndOptionsRandomGenerator';
+
+const randomGenerator = new QuestionAndOptionsRandomGenerator();
 
 export const singleQuestion = {
   pattern: /一問一答/,
   execute: (textMessage: TextMessage): Message[] => {
+    const questionAndOptions = randomGenerator.generate();
+
+    const actions: Action[] = questionAndOptions.options.map((option): Action => {
+      return {
+        type: "message",
+        text: option.formula,
+        label: String(option.value),
+      };
+    });
+
     return [
       {
         type: "template",
-        altText: "11かける12の答えを選択してください",
+        altText: questionAndOptions.question,
         template: {
           type: "buttons",
-          text: '11 x 12 はいくつ？',
-          actions: [
-            {
-              type: "message",
-              text: "11x12=112",
-              label: "112",
-            },
-            {
-              type: "message",
-              text: "11x12=122",
-              label: "122",
-            },
-            {
-              type: "message",
-              text: "11x12=132",
-              label: "132",
-            },
-            {
-              type: "message",
-              text: "11x12=142",
-              label: "142",
-            },
-          ]
+          text: questionAndOptions.question,
+          actions,
         }
       },
     ];
