@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": ["ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -12,9 +12,10 @@
     "module": "commonjs",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
+    "outDir": "dist",
     "isolatedModules": true,
     "noEmit": true,
     "typeRoots": ["./node_modules/@types"]
   },
-  "include": ["./**/*.ts"],
+  "include": ["**/*.ts"],
 }

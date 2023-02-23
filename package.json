@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node index.ts",
-    "tsc": "tsc",
-    "tsc:watch": "tsc --watch"
+    "build": "tsc --build",
+    "build:watch": "tsc --watch",
+    "prestart": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "ts-node index.ts"
   },
   "keywords": [],
   "author": "",
