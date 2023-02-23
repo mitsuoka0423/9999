@@ -1,24 +1,8 @@
-import { config } from "dotenv";
-import { WebhookEvent, Message, Client, ClientConfig } from '@line/bot-sdk';
+import { Client, WebhookEvent, Message } from '@line/bot-sdk';
+import { channelAccessToken, channelSecret } from '../library/line/env';
 import { handleMessageEvent } from './messageEventHandler';
 
-config();
-
-if (!process.env.CHANNEL_ACCESS_TOKEN) {
-  throw new Error("CHANNEL_ACCESS_TOKEN is required");
-}
-const channelAccessToken = process.env.CHANNEL_ACCESS_TOKEN;
-
-if (!process.env.CHANNEL_SECRET) {
-  throw new Error("CHANNEL_SECRET is required");
-}
-const channelSecret = process.env.CHANNEL_SECRET;
-
-const clientConfig: ClientConfig  = {
-  channelAccessToken,
-  channelSecret,
-};
-const client = new Client(clientConfig);
+const client = new Client({ channelAccessToken, channelSecret });
 
 export const handle = async (event: WebhookEvent) => {
   console.info('[START]eventHandler/handle');
