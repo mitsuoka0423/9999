@@ -25,4 +25,5 @@ app.post("/webhook", middleware(middlewareConfig), bodyParser.json(), (req, _, n
   adapter(req).then((result) => res.json(result));
 });
 
-app.listen(3000, () => console.log('listening on port http://localhost:3000 !'));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`listening on port http://localhost:${port} !`));
