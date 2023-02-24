@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "esbuild src/index.ts --bundle --minify --outfile=dist/index.js --platform=node",
     "build:watch": "tsc --watch",
     "dev": "ts-node src/index.ts",
     "dev:live": "nodemon --watch src --exec 'ts-node' src/index.ts",
@@ -33,6 +33,7 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^18.0.6",
     "@types/shuffle-array": "^1.0.2",
+    "esbuild": "^0.17.10",
     "husky": "^8.0.0",
     "nodemon": "^2.0.20",
     "rome": "^11.0.0",
